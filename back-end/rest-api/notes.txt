@@ -1,0 +1,19 @@
+🚧 
+
+docker-compose down -v --remove-orphans && docker-compose up -d
+
+sudo kill $(sudo lsof -t -i:3000)
+
+docker run -d -p 27017:27017 mongo:latest
+docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:latest
+
+💡 jsonwebtoken
+    - tolkien:
+        string: tokenjwtsysmap
+        MD5 Hash: 7c5f56ddda0b0dc4f0dd364966c653b6
+        SHA1 Hash: 61e0ec8e41ea087d96bedd5c2091b5da189aaffa
+    - verifications:
+        No token provided
+        Token malformatted
+        Token invalid
+
