@@ -1,9 +1,0 @@
-## jsonwebtoken ##
-    - tolkien:
-        string: tokenjwtsysmap
-        MD5 Hash: 7c5f56ddda0b0dc4f0dd364966c653b6
-        SHA1 Hash: 61e0ec8e41ea087d96bedd5c2091b5da189aaffa
-    - verifications:
-        No token provided
-        Token malformatted
-        Token invalid
