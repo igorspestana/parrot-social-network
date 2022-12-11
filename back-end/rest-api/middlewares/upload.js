@@ -1,15 +1,8 @@
 const multer = require('multer')
-
-const {
-    S3Client,
-    PutObjectCommand
-} = require('@aws-sdk/client-s3')
-
-const upload = multer({
-    storage: multer.memoryStorage()
-})
-
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3')
+const upload = multer({ storage: multer.memoryStorage() })
 const bucketName = 'first-bucket'
+
 const config = {
     region: 'us-east-1',
     endpoint: process.env.BUCKET_ENDPOINT || 'http://localhost:9000',
@@ -22,6 +15,7 @@ const config = {
     }
 }
 const s3Client = new S3Client(config)
+
 module.exports = [upload.single('file'), (req, res, next) => {
     if (req.file) {
         const filename = `${req.user.profile.id}/${req.file.originalname}`

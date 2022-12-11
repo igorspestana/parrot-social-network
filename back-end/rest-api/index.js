@@ -1,18 +1,12 @@
-//INDEX////////////////////////////////////
-
-//PACOTES/////////////////////////////
 const http = require('http')
 const socketio = require('socket.io')
 const jwt = require('jsonwebtoken')
 const User = require('./models/User')
-
-//CONECTADOS////////////////////////////////////
 const pubsub = require('./middlewares/pubsub')
 const app = require('./app')
 
-//SOCKET.IO////////////////////////////////////
+//socket.io
 const server = http.Server(app)
-//const server = require("http").createServer(app)
 const io = socketio(server, {
     // Specifying CORS
     cors: {
@@ -22,7 +16,7 @@ const io = socketio(server, {
 
 const liveData = io.of('/v1')
 
-//MIDDLEWARE DE AUTENTICAÇÃO DO LIVE DATA////////////////////////////////////
+//live data authentication middleware
 liveData.use((socket, next) => {
     //console.log('on use socket')
     if (socket.handshake.auth && socket.handshake.auth.token) {
@@ -49,7 +43,7 @@ liveData.use((socket, next) => {
     }
 })
 
-//SOCKET EVENT - COMUNICAÇÃO DE PROTOCOLO SOCKET.IO////////////////////////////////////
+//socket event - socket.io protocol communication
 liveData.on('connection', function (socket) {
     console.warn(`a user connected live ${socket.profile.name}`)
 
@@ -62,7 +56,7 @@ liveData.on('connection', function (socket) {
     socket.emit('connect_profile', socket.profile)
 })
 
-//RABBIT - CONSUMIR A MENSAGEM////////////////////////////////////
+//rabbimq - message consumption
 pubsub.sub().then((sub) => {
     //Consome o rabbit, pega a mensagem e da ok
     sub.on('message', function (message, content, ackOrNack) {
@@ -76,13 +70,6 @@ pubsub.sub().then((sub) => {
     })
 }).catch(console.error)
 
-//PORTA///////////////////////////
-/* app.listen(`${process.env.PORT}`, () => {
-    console.log(`Server listen on http://localhost:${process.env.PORT}`)
-    console.log(`MONGODB: ${process.env.MONGO_URL}`)
-    console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
-    console.log(`PORT: ${process.env.PORT}`)
-}) */
 server.listen(`${process.env.PORT}`, () => {
     console.warn(`Server listen on http://localhost:${process.env.PORT}`)
     console.warn(`MONGODB: ${process.env.MONGO_URL}`)

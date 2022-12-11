@@ -1,13 +1,28 @@
-import AuthForm from '../../components/AuthForm';
-import api from '../../services/api';
+import jwt_decode from 'jwt-decode'
+import AuthForm from '../../components/AuthForm'
+import api from '../../services/api'
+
+interface UserToken {
+    profile: string
+    user: string
+}
 
 function Login() {
     async function handleLogin(user: string, password: string) {
-        const data = await api.post('/api/security/login', {
-            user,
-            password
-        });
-        console.log(data);
+        try {
+            const { data } = await api.post('/security/login', {
+                user,
+                password
+            })
+            //para preencher no local storage
+            const decodedToken = jwt_decode(data.accessToken) as UserToken
+            localStorage.setItem("profile", decodedToken.profile)
+            localStorage.setItem("user", decodedToken.user)
+            localStorage.setItem("accessToken", data.accessToken)
+        } catch (err) {
+            console.error(err)
+            alert("Ocorreu um erro no login")
+        }
     }
 
     return (

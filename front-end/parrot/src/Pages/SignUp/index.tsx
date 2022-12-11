@@ -3,7 +3,7 @@ import api from '../../services/api';
 
 function SignUp() {
     async function handleRegister(user: string, password: string) {
-        const data = await api.post('/api/security/login', {
+        const data = await api.post('/security/login', {
             user,
             password
         });
