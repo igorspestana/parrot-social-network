@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import AuthForm from '../../components/AuthForm'
 import api from '../../services/api'
@@ -8,6 +9,7 @@ interface UserToken {
 }
 
 function Login() {
+    const navigate = useNavigate()
     async function handleLogin(user: string, password: string) {
         try {
             const { data } = await api.post('/security/login', {
@@ -19,6 +21,7 @@ function Login() {
             localStorage.setItem("profile", decodedToken.profile)
             localStorage.setItem("user", decodedToken.user)
             localStorage.setItem("accessToken", data.accessToken)
+            return navigate("/home")
         } catch (err) {
             console.error(err)
             alert("Ocorreu um erro no login")
