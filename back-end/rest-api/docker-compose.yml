@@ -48,7 +48,7 @@ services:
 
   backend:
     restart: always
-    #image: gabrielmancini/api-upload_backend:latest 
+    image: igorspestana/rest-api_backend:latest
     build:
       context: ./
     volumes:
