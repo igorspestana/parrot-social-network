@@ -3,7 +3,7 @@ import Heading from '../../components/Heading'
 import Text from '../../components/Text';
 import logo from '../../assets/logo.svg';
 import { TextInput } from '../../components/TextInput';
-import { User } from 'phosphor-react';
+import { Password, User } from 'phosphor-react';
 import { Lock } from 'phosphor-react';
 import Button from '../../components/Button';
 
@@ -11,9 +11,26 @@ import Button from '../../components/Button';
 interface AuthFormProps {
     formTitle: string;
     submitFormButtonText: string;
-    submitFormButtonAction: (user: string, password: string) => void;
+    submitFormButtonAction: (auth: Auth) => void;
     linkDescription: string;
     routeName: string;
+    showNameInput?: boolean;
+}
+
+interface AuthFormElements extends HTMLFormControlsCollection {
+    user: HTMLInputElement;
+    name?: HTMLInputElement;
+    password: HTMLInputElement;
+}
+
+interface AuthFormElement extends HTMLFormElement {
+    readonly elements: AuthFormElements
+}
+
+export interface Auth {
+    user: string;
+    name?: string;
+    password: string;
 }
 
 function AuthForm({
@@ -22,16 +39,20 @@ function AuthForm({
     submitFormButtonAction,
     linkDescription,
     routeName,
+    showNameInput,
 }: AuthFormProps) {
-    function handleSubmit(event: FormEvent) {
+    function handleSubmit(event: FormEvent<AuthFormElement>) {
         console.log('ENTROU NO HANDLESUBMIT!!!!!!!!!!!!!!!!!!!!!!!')
         event.preventDefault();
-        const form = event.target as HTMLFormElement;
+        const form = event.currentTarget;
 
-        submitFormButtonAction(
-            form.elements.user.value,
-            form.elements.password.value
-        );
+        const auth = {
+            user: form.elements.user.value,
+            name: form.elements.name?.value,
+            password: form.elements.password.value
+
+        }
+        submitFormButtonAction(auth);
     }
     return (
         <div>
@@ -44,7 +65,25 @@ function AuthForm({
                     <Text className='mt-1 opacity-50'>{formTitle}</Text>
                 </header>
 
-                <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-4 items-stretch w-full max-w-sm mt-10'>
+                <form
+                    onSubmit={handleSubmit}
+                    className='flex flex-col gap-4 items-stretch w-full max-w-sm mt-10'>
+                    {showNameInput && (
+                        <label htmlFor="name" className='flex flex-col gap-2'>
+                            <Text>Nome</Text>
+                            <TextInput.Root>
+                                <TextInput.Icon>
+                                    <User />
+                                </TextInput.Icon>
+                                <TextInput.Input
+                                    id='name'
+                                    type='text'
+                                    placeholder='Digite o nome do usuário'
+                                />
+                            </TextInput.Root>
+                        </label>
+                    )}
+
                     <label htmlFor="user" className='flex flex-col gap-2'>
                         <Text>Endereço de e-mail</Text>
                         <TextInput.Root>

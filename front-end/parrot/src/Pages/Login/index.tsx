@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import AuthForm from '../../components/AuthForm'
+import AuthForm, { Auth } from '../../components/AuthForm'
 import api from '../../services/api'
 
 interface UserToken {
@@ -10,12 +10,9 @@ interface UserToken {
 
 function Login() {
     const navigate = useNavigate()
-    async function handleLogin(user: string, password: string) {
+    async function handleLogin(auth: Auth) {
         try {
-            const { data } = await api.post('/security/login', {
-                user,
-                password
-            })
+            const { data } = await api.post('/security/login', auth)
             //para preencher no local storage
             const decodedToken = jwt_decode(data.accessToken) as UserToken
             localStorage.setItem("profile", decodedToken.profile)
