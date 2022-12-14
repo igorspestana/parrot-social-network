@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require('morgan')
+const swaggerUi = require('swagger-ui-express')
 
 const pubsub = require('./middlewares/pubsub')
 const userRoute = require('./routes/users')
@@ -14,6 +15,7 @@ const postRoute = require('./routes/posts')
 const commentRoute = require('./routes/comments')
 const profileRoute = require('./routes/profiles')
 const feedRoute = require('./routes/feed')
+const swaggerDocs = require('./swagger.json')
 
 //middlwares configuration
 const urlencodedMiddleware = bodyParser.urlencoded({ extended: true })
@@ -22,6 +24,8 @@ app.use(bodyParser.json({ defer: true }))
 
 //set logger
 app.use(morgan("tiny"))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use('/favicon.ico', (req, res) => { res.end() })
 app.use(express.static(path.join(__dirname, 'public')))
