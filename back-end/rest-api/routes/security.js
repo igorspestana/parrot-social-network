@@ -36,7 +36,7 @@ router.route('/register')
             })
             const newProfile = new Profile({
                 user: newUser._id,
-                name: newUser.user,
+                name: req.body.name,
             })
             const user = await newUser.save();
             const profile = await newProfile.save();
