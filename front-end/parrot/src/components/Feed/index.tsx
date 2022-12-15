@@ -54,7 +54,7 @@ function Feed() {
     }
 
     return (
-        <div>
+        <div className="basis-5/6 overflow-y-auto scroll-smooth">
             <Heading className="border-b border-slate-400 mt-4">
                 <Text size='lg' className="font-extrabold ml-5">Página Inicial</Text>
                 <div className="flex flex-row items-center ml-5 my-4">
