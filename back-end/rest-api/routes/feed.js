@@ -14,7 +14,7 @@ router.route('/')
                 currentProfile.following.map((friendId) => {
                     return Post.find({ profile: friendId }).populate('profile').populate({ path: 'comments' })
                 }))
-            console.log(friendPosts)
+            //console.log(friendPosts)
             res.json(profilePosts.concat(...friendPosts))
         } catch (err) {
             res.status(500).json(err)
