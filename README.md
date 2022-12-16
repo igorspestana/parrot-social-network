@@ -6,10 +6,10 @@ Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Fu
 ## Modules:
 
 + Backend - [API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)   :heavy_check_mark:
-+ Frontend - [WEB](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api) ⚠️
-+ Frontend - [MOBILE](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api) ⚠️
++ Frontend - [WEB](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot) ⚠️
++ Frontend - [MOBILE](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile) ⚠️
 
-## Technologies Used in Backend API:
+## Technologies used in backend API:
 
 <table>
   <tr>
@@ -20,7 +20,7 @@ Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Fu
     <td>Docker</td>
   </tr>
   <tr>
-    <td>19.2.0</td>
+    <td>18.12.1</td>
     <td>6.0.3</td>
     <td>3.8</td>
     <td>latest</td>
@@ -28,78 +28,90 @@ Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Fu
   </tr>
 </table>
 
-## Stack utilizada
+## Technologies used in frontend Web:
 
-**Front-end:** REACT(REDUX),CSSBASILENE,JAVASCRIPT
+<table>
+  <tr>
+    <td>React</td>
+    <td>Vite</td>
+    <td>Tailwind</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
-**Back-end:** NODE , EXPRESS, JWT Bycrypt, AXIOS, MULTER, DOTENV, MORGAN, CORS, BODY_PARSER.
+## Technologies used in frontend mobile:
+
+<table>
+  <tr>
+    <td>React Native</td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
 
 ## How to run the application:
 
-1) create directory for project: mkdir app
-2) move for diretory created: cd app
-3) git clone https://github.com/bc-fullstack-02/alexandre-siqueira.git or git@github.com:bc-fullstack-02/alexandre-siqueira.git
-4) move for directory backend: cd backend
-5) run command: npm install
-6) run command: docker-compose up
-7) access browser url: http://localhost:4000/api-docs/
-
-### Clone o repositório
+1) clone the application: 
 ```
-git clone https://github.com/bc-fullstack-02/ludmylla-arielly.git
-cd backend
-cd social-network
+git clone https://github.com/bc-fullstack-02/igor-pestana.git
+```
+2) install dependencies on backend:
+```
+cd ./back-end/rest-api/
+npm install
+```
+3) up server and services:
+```
+cd ./back-end/rest-api/
+docker-compose up -d
+```
+*in case of server error, repeat `docker-compose up -d` after the services are successfully running
+
+4) up frontend
+
+```
+cd ../../front-end/parrot/
+npm run dev
 ```
 
-### Instale as dependências
-    ```
-    cd social-network
-    npm install
-    ```
+5) access browser url: 
+- Web Application: http://localhost:4000
+- Api Swagger Documentation: http://localhost:4000/api-docs/
 
-### Execute a aplicação
-  ```
-  npm start
-  ```
-### Uma aplicação planejada pela Sysmap, onde eu tenho que desenvolver uma rede social midia com frontend, backend e mobile. 
+## Project functionalities:
 
-## Descrição principal do projeto:
++ register user
 
-+ Registrar usuario
++ authenticate user
 
-+ Autenticar 
++ login
 
-+ Logar
++ follow profiles
 
-+ Adicionar imagens e videos
++ create post
 
-+ Curti postagens 
++ upload images on post
 
-+ Seguir outros usuarios
++ like post
 
-**Esses recursos estão em desenvolvimento
++ comment post
 
-## Tecnologias usadas:
-
-+ Javascript
-+ React
-+ Nodejs
-+ MongoDB
-
-
-## Autor
+## Author
 
 - [@igorspestana](https://github.com/igorspestana)
+
+
+## Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/igorspestana/)
+
 
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-## 🔗 Links
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/igorspestana/)
-[![Gmail](https://img.shields.io/badge/Yahoo!-6001D2?style=flat-square&logo=Yahoo!&logoColor=white)](mailto:gabriell.ribeiro@yahoo.com)
-[![GitHub](https://img.shields.io/badge/Gahbr-%23121011.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/Gahbr)
-
-## Licença
-
-[MIT](https://choosealicense.com/licenses/mit/)
+Free Software, Hell Yeah!
