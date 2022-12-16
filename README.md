@@ -1,13 +1,13 @@
 # Parrot Social Network
-Projeto de rede social desenvolvido no Bootcamp Full-Stack Sysmap Solutions
+Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Full Stack | 2ª edição.
 
 > Status: Developing ⚠️
 
 ## Modules:
 
-+ Backend - [API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)
-+ Frontend - [WEB](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api)
-+ Frontend - [MOBILE](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api)
++ Backend - [API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)   :heavy_check_mark:
++ Frontend - [WEB](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api) ⚠️
++ Frontend - [MOBILE](https://github.com/bc-fullstack-02/luisa-vitoria/tree/main/Backend/Projeto/api) ⚠️
 
 ## Technologies Used in Backend API:
 
@@ -97,6 +97,8 @@ cd social-network
 
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/igorspestana/)
+[![Gmail](https://img.shields.io/badge/Yahoo!-6001D2?style=flat-square&logo=Yahoo!&logoColor=white)](mailto:gabriell.ribeiro@yahoo.com)
+[![GitHub](https://img.shields.io/badge/Gahbr-%23121011.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/Gahbr)
 
 ## Licença
 
