@@ -23,7 +23,7 @@ function Feed({ posts, handleLike }: FeedProps) {
             </Heading>
             <section>
                 {posts && posts.map((post: Post) => (
-                    <PostItem post={post} handleLike={handleLike} />
+                    <PostItem post={post} handleLike={handleLike} key={post._id} />
                 ))}
             </section>
         </div >
