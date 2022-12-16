@@ -86,7 +86,7 @@ npm install
 npm run dev
 ```
 8) access browser url: 
-- Web Application: http://localhost:4000
+- Web Application: http://localhost:5173
 - Api Swagger Documentation: http://localhost:4000/api-docs/
 
 ## Author
