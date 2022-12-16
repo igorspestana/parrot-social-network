@@ -7,6 +7,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require('morgan')
 const swaggerUi = require('swagger-ui-express')
+const createError = require('http-errors')
 
 const pubsub = require('./middlewares/pubsub')
 const userRoute = require('./routes/users')
@@ -50,5 +51,35 @@ app.use('/v1/posts', commentRoute)
 app.use('/v1/posts', postRoute)
 app.use('/v1/profiles', profileRoute)
 app.use('/v1/feed', feedRoute)
+
+// catch all 404 since no middleware responded
+app.use(function (req, res, next) {
+    const err = createError(404)
+    next(err)
+})
+
+// treat error or validation and store the errors
+app.use(function (error, req, res, next) {
+    if (error.name && error.name === 'ValidationError') {
+        res.status(406).json(error)
+    } else if ((error.status && error.status === 404) || (error.name && error.name === 'CastError')) {
+        res.status(404).json({
+            url: req.originalUrl,
+            error: {
+                message: 'Not Found'
+            }
+        })
+    } else if (error.code == 11000) {
+        res.status(500).json({
+            url: req.originalUrl,
+            error: 'Duplicate key not allowed'
+        })
+    } else {
+        res.status(error.status || 500).json({
+            url: req.originalUrl,
+            error: 'internal error'
+        })
+    }
+})
 
 module.exports = app
