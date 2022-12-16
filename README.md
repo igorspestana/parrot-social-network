@@ -1,5 +1,5 @@
 # Parrot Social Network
-Social network project developed in the SysMap Excellence Full Stack Trainee Program | 2nd edition.
+Social network project developed on the SysMap Excellence Full Stack Trainee Program 2nd edition.
 
 > Status: Developing ⚠️ 
 
@@ -55,7 +55,7 @@ Social network project developed in the SysMap Excellence Full Stack Trainee Pro
     <td>React Native</td>
   </tr>
   <tr>
-    <td></td>
+    <td> - </td>
   </tr>
 </table>
 
