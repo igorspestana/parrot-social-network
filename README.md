@@ -65,26 +65,27 @@ Social network project developed on the SysMap Excellence Full Stack Trainee Pro
 ```
 git clone https://github.com/bc-fullstack-02/igor-pestana.git
 ```
-2) install dependencies on backend:
+2) go to *rest-api* directory in *back-end* directory
+3) install back-end dependencies:
 ```
-cd ./back-end/rest-api/
 npm install
 ```
-3) start the server and the services:
+4) start the server and the services:
 ```
-cd ./back-end/rest-api/
 docker-compose up -d
 ```
 *in case of server error, repeat `docker-compose up -d` after the services are successfully running
 
-4) start the frontend
-
+5) go to *parrot* directory in *front-end* directory
+6) install front-end dependencies:
 ```
-cd ./front-end/parrot/
+npm install
+```
+7) start the frontend
+```
 npm run dev
 ```
-
-5) access browser url: 
+8) access browser url: 
 - Web Application: http://localhost:4000
 - Api Swagger Documentation: http://localhost:4000/api-docs/
 
