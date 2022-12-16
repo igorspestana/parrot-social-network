@@ -5,38 +5,17 @@ Social network project developed in the SysMap Excellence Full Stack Trainee Pro
 
 ## Modules:
 
-+ [Backend API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)   :heavy_check_mark:
-+ [Frontend web](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot) ⚠️
-+ [Mobile](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile) ⚠️
++ [Backend API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)
++ [Frontend web](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot)
++ [Mobile](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile)
 
-## Project functionalities:
-
-### User:
-+ register user :heavy_check_mark:
-
-+ authenticate user :heavy_check_mark:
-
-+ login :heavy_check_mark: 
-
-### Profile:
-+ follow profiles :heavy_check_mark:
-
-### Post:
-+ create post :heavy_check_mark:
-
-+ upload images on post :heavy_check_mark:
-
-+ like post :heavy_check_mark:
-
-### Comment:
-
-+ comment post :heavy_check_mark:
 ## Technologies used:
 ### Backend API:
 
 <table>
   <tr>
-    <td>NodeJS</td>
+    <td>Node.js</td>
+    <td>Express.js</td>
     <td>MongoDB</td>
     <td>Rabbitmq</td>
     <td>Minio</td>
@@ -44,8 +23,9 @@ Social network project developed in the SysMap Excellence Full Stack Trainee Pro
   </tr>
   <tr>
     <td>18.12.1</td>
-    <td>6.0.3</td>
-    <td>3.8</td>
+    <td>4.18.2</td>
+    <td>latest</td>
+    <td>3.11</td>
     <td>latest</td>
     <td>20.10.21</td>
   </tr>
@@ -55,14 +35,16 @@ Social network project developed in the SysMap Excellence Full Stack Trainee Pro
 
 <table>
   <tr>
+    <td>Typescript</td>
     <td>React</td>
     <td>Vite</td>
     <td>Tailwind</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>4.6.4</td>
+    <td>18.2.0</td>
+    <td>3.2.3</td>
+    <td>3.2.4</td>
   </tr>
 </table>
 
@@ -79,7 +61,7 @@ Social network project developed in the SysMap Excellence Full Stack Trainee Pro
 
 ## How to run the application:
 
-1) clone the application: 
+1) clone the project: 
 ```
 git clone https://github.com/bc-fullstack-02/igor-pestana.git
 ```
@@ -88,17 +70,17 @@ git clone https://github.com/bc-fullstack-02/igor-pestana.git
 cd ./back-end/rest-api/
 npm install
 ```
-3) up server and services:
+3) start the server and the services:
 ```
 cd ./back-end/rest-api/
 docker-compose up -d
 ```
 *in case of server error, repeat `docker-compose up -d` after the services are successfully running
 
-4) up frontend
+4) start the frontend
 
 ```
-cd ../../front-end/parrot/
+cd ./front-end/parrot/
 npm run dev
 ```
 
