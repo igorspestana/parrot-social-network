@@ -5,8 +5,8 @@ Social network project developed on the SysMap Excellence Full Stack Trainee Pro
 
 ## Modules:
 
-+ [Backend API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)
-+ [Frontend web](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot)
++ [Back-end API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)
++ [Front-end web](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot)
 + [Mobile](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile)
 
 ## Technologies used:
