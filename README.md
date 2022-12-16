@@ -81,7 +81,7 @@ docker-compose up -d
 ```
 npm install
 ```
-7) start the frontend
+7) start the front-end
 ```
 npm run dev
 ```
