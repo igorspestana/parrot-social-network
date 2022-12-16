@@ -8,6 +8,7 @@ import Text from "../Text"
 import Profile from "../Profile"
 
 interface Profile {
+    followButtonDisabled: boolean
     _id: string;
     name: string;
     followers: string[];
@@ -17,7 +18,6 @@ function Profiles() {
     const authHeader = getAuthHeader()
     const user = localStorage.getItem("user")
     const [profiles, setProfiles] = useState<Profile[]>([])
-    const profileId = localStorage.getItem("profile")
 
     useEffect(() => {
         const getProfiles = async () => {
@@ -59,7 +59,6 @@ function Profiles() {
             return [...newProfiles]
         })
     }
-
 
     return (
         <div className="basis-5/6">

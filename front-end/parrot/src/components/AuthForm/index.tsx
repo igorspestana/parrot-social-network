@@ -3,9 +3,10 @@ import Heading from '../../components/Heading'
 import Text from '../../components/Text';
 import logo from '../../assets/logo.svg';
 import { TextInput } from '../../components/TextInput';
-import { Password, User } from 'phosphor-react';
+import { User } from 'phosphor-react';
 import { Lock } from 'phosphor-react';
 import Button from '../../components/Button';
+import { FormEvent } from 'react';
 
 //Interface para encher os parâmetros
 interface AuthFormProps {
@@ -42,7 +43,6 @@ function AuthForm({
     showNameInput,
 }: AuthFormProps) {
     function handleSubmit(event: FormEvent<AuthFormElement>) {
-        console.log('ENTROU NO HANDLESUBMIT!!!!!!!!!!!!!!!!!!!!!!!')
         event.preventDefault();
         const form = event.currentTarget;
 

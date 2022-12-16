@@ -1,17 +1,23 @@
-import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 import { House, User, UsersThree } from "phosphor-react"
 import MenuItem from "../MenuItem"
 import Text from '../../components/Text'
 import CreatePostButtom from '../../components/CreatePostButtom'
 import CreatePostDialog from '../../components/CreatePostDialog'
 import logo_menu from '../../assets/logo_menu.svg'
+import { Post } from '../../Model/Post'
 
-function Menu() {
+interface MenuProps {
+    newPostCreated: (post: Post) => void
+}
+
+function Menu(props: MenuProps) {
     const [open, setOpen] = useState(false)
 
-    function closeDialog() {
+    function postCreated(post: Post) {
         setOpen(false)
+        props.newPostCreated(post)
     }
 
     return (
@@ -34,7 +40,7 @@ function Menu() {
             <div className='flex flex-col items-center'>
                 <Dialog.Root open={open} onOpenChange={setOpen}>
                     <CreatePostButtom />
-                    <CreatePostDialog closeDialog={closeDialog} />
+                    <CreatePostDialog postCreated={postCreated} />
                 </Dialog.Root>
             </div>
         </div>
