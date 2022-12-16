@@ -1,15 +1,38 @@
 # Parrot Social Network
-Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Full Stack | 2ª edição.
+Social network project developed in the SysMap Excellence Full Stack Trainee Program | 2nd edition.
 
-> Status: Developing ⚠️
+> Status: Developing ⚠️ 
 
 ## Modules:
 
-+ Backend - [API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)   :heavy_check_mark:
-+ Frontend - [WEB](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot) ⚠️
-+ Frontend - [MOBILE](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile) ⚠️
++ [Backend API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)   :heavy_check_mark:
++ [Frontend web](https://github.com/bc-fullstack-02/igor-pestana/tree/main/front-end/parrot) ⚠️
++ [Mobile](https://github.com/bc-fullstack-02/igor-pestana/tree/main/mobile) ⚠️
 
-## Technologies used in backend API:
+## Project functionalities:
+
+### User:
++ register user :heavy_check_mark:
+
++ authenticate user :heavy_check_mark:
+
++ login :heavy_check_mark: 
+
+### Profile:
++ follow profiles :heavy_check_mark:
+
+### Post:
++ create post :heavy_check_mark:
+
++ upload images on post :heavy_check_mark:
+
++ like post :heavy_check_mark:
+
+### Comment:
+
++ comment post :heavy_check_mark:
+## Technologies used:
+### Backend API:
 
 <table>
   <tr>
@@ -28,7 +51,7 @@ Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Fu
   </tr>
 </table>
 
-## Technologies used in frontend Web:
+### Frontend Web:
 
 <table>
   <tr>
@@ -43,7 +66,7 @@ Projeto de rede social desenvolvido no Programa Trainee SysMap de Excelência Fu
   </tr>
 </table>
 
-## Technologies used in frontend mobile:
+### Mobile:
 
 <table>
   <tr>
@@ -82,24 +105,6 @@ npm run dev
 5) access browser url: 
 - Web Application: http://localhost:4000
 - Api Swagger Documentation: http://localhost:4000/api-docs/
-
-## Project functionalities:
-
-+ register user
-
-+ authenticate user
-
-+ login
-
-+ follow profiles
-
-+ create post
-
-+ upload images on post
-
-+ like post
-
-+ comment post
 
 ## Author
 
