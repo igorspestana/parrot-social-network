@@ -52,10 +52,12 @@ Social network project developed at the SysMap Excellence Full Stack Trainee Pro
 
 <table>
   <tr>
+    <td>Typescript</td>
     <td>React Native</td>
   </tr>
   <tr>
-    <td> - </td>
+    <td> ^4.6.3 </td>
+    <td> 0.70.5 </td>
   </tr>
 </table>
 
