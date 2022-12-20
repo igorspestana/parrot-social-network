@@ -9,6 +9,7 @@ interface PostItemProps {
 }
 
 function PostItem({ post, handleLike }: PostItemProps) {
+    const profile = localStorage.getItem("profile") as string
     return (<div className="border-b border-slate-400" key={post._id}>
         <div className="flex flex-row items-center ml-5 my-4">
             <UserCircle size={48} weight='light' className="text-slate-50" />
@@ -31,8 +32,16 @@ function PostItem({ post, handleLike }: PostItemProps) {
             <Chat size={24} className="text-slate-50" />
             <Text size="sm">{post.comments.length}</Text>
 
-            <div className="hover:bg-sky-400 rounded-full p-1" onClick={() => handleLike(post._id)}>
-                <Heart size={24} className="text-slate-50" />
+            <div
+                className="hover:bg-sky-400 rounded-full p-1"
+                onClick={() => handleLike(post._id)}
+            >
+                {post.likes.includes(profile) ? (
+                    <Heart size={24} className="text-red-500" weight="fill" />
+                ) : (
+                    <Heart size={24} className="text-slate-50" />
+                )}
+
             </div>
             <Text size="sm">{post.likes.length}</Text>
         </div>

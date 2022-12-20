@@ -20,23 +20,58 @@ function Home() {
     }, [])
 
     async function handleLike(postId: String) {
-        try {
-            await api.post(`/posts/${postId}/like`, null, authHeader)
-            const newPost = posts
-                .filter((post) => post._id === postId)
-                .map((post) => {
-                    post.likes.push(profile)
-                    return post
-                })
+        const likedPost = posts
+            .filter(post => post._id === postId)
+            .map(post => post.likes.includes(profile))
 
-            setPosts((posts) => {
-                const post = newPost[0]
-                const index = posts.indexOf(post)
-                posts[index] = post
-                return [...posts]
-            })
-        } catch (err) {
-            console.error(err)
+        if (likedPost && !likedPost[0]) {
+            console.log(likedPost)
+            likePost(postId)
+        } else {
+            unlikePost(postId)
+        }
+
+        async function likePost(postId: String) {
+            try {
+                await api.post(`/posts/${postId}/like`, null, authHeader)
+                const newPost = posts
+                    .filter((post) => post._id === postId)
+                    .map((post) => {
+                        post.likes.push(profile)
+                        return post
+                    })
+
+                setPosts((posts) => {
+                    const post = newPost[0]
+                    const index = posts.indexOf(post)
+                    posts[index] = post
+                    return [...posts]
+                })
+            } catch (err) {
+                console.error(err)
+            }
+        }
+
+        async function unlikePost(postId: String) {
+            try {
+                await api.post(`/posts/${postId}/like`, null, authHeader)
+                const newPost = posts
+                    .filter((post) => post._id === postId)
+                    .map((post) => {
+                        const index = post.likes.indexOf(profile)
+                        post.likes.splice(index, 1)
+                        return post
+                    })
+
+                setPosts((posts) => {
+                    const post = newPost[0]
+                    const index = posts.indexOf(post)
+                    posts[index] = post
+                    return [...posts]
+                })
+            } catch (err) {
+                console.error(err)
+            }
         }
     }
 
