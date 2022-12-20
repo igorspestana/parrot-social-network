@@ -4,6 +4,7 @@ import { getAuthHeader } from "../../services/auth"
 import Menu from '../../components/Menu'
 import Feed from '../../components/Feed'
 import { Post } from "../../Model/Post"
+import { likePost, unlikePost } from "../../services/posts"
 
 function Home() {
     const authHeader = getAuthHeader()
@@ -20,59 +21,30 @@ function Home() {
     }, [])
 
     async function handleLike(postId: String) {
-        const likedPost = posts
-            .filter(post => post._id === postId)
-            .map(post => post.likes.includes(profile))
+        const [post, ...rest] = posts
+            .filter((post) => post._id === postId)
 
-        if (likedPost && !likedPost[0]) {
-            console.log(likedPost)
-            likePost(postId)
-        } else {
-            unlikePost(postId)
-        }
-
-        async function likePost(postId: String) {
-            try {
-                await api.post(`/posts/${postId}/like`, null, authHeader)
-                const newPost = posts
-                    .filter((post) => post._id === postId)
-                    .map((post) => {
-                        post.likes.push(profile)
-                        return post
-                    })
-
-                setPosts((posts) => {
-                    const post = newPost[0]
-                    const index = posts.indexOf(post)
-                    posts[index] = post
-                    return [...posts]
-                })
-            } catch (err) {
-                console.error(err)
+        try {
+            if (post && !post.likes.includes(profile)) {
+                const newPost = await likePost(post, profile)
+                changePostItem(newPost)
+            } else {
+                const newPost = await unlikePost(post, profile)
+                changePostItem(newPost)
             }
+        } catch (err) {
+            console.error(err)
         }
+    }
 
-        async function unlikePost(postId: String) {
-            try {
-                await api.post(`/posts/${postId}/like`, null, authHeader)
-                const newPost = posts
-                    .filter((post) => post._id === postId)
-                    .map((post) => {
-                        const index = post.likes.indexOf(profile)
-                        post.likes.splice(index, 1)
-                        return post
-                    })
 
-                setPosts((posts) => {
-                    const post = newPost[0]
-                    const index = posts.indexOf(post)
-                    posts[index] = post
-                    return [...posts]
-                })
-            } catch (err) {
-                console.error(err)
-            }
-        }
+    function changePostItem(newPost: Post) {
+        setPosts((posts) => {
+            const post = newPost
+            const index = posts.indexOf(post)
+            posts[index] = post
+            return [...posts]
+        })
     }
 
     async function newPostCreated(post: Post) {
@@ -89,7 +61,8 @@ function Home() {
         <div className="w-screen h-screen flex">
             <Menu newPostCreated={newPostCreated} />
             <Feed posts={posts} handleLike={handleLike} />
-        </div>)
+        </div>
+    )
 }
 
 export default Home

@@ -1,11 +1,12 @@
 import { UserCircle, Chat, Heart } from "phosphor-react"
+import { Link } from "react-router-dom"
 import Heading from "../Heading"
 import Text from "../Text"
 import { Post } from '../../Model/Post'
 
 interface PostItemProps {
     post: Post;
-    handleLike: (postId: String) => void
+    handleLike: (postId: string) => void
 }
 
 function PostItem({ post, handleLike }: PostItemProps) {
@@ -16,7 +17,7 @@ function PostItem({ post, handleLike }: PostItemProps) {
             <Text className="font-extrabold ml-2">{post.profile.name}</Text>
         </div>
         <div className="ml-16 flex flex-col gap-2">
-            <Heading size="sm">{post.title}</Heading>
+            <Link to={`/posts/${post._id}`}><Heading size="sm">{post.title}</Heading></Link>
             {post.image ? (
                 <img
                     src={post.description}

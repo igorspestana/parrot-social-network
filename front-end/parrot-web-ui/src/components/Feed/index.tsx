@@ -6,7 +6,7 @@ import PostItem from "../PostItem"
 
 interface FeedProps {
     posts: Post[];
-    handleLike: (postId: String) => void
+    handleLike: (postId: string) => void
 }
 
 function Feed({ posts, handleLike }: FeedProps) {

@@ -5,6 +5,7 @@ import SignUp from './Pages/SignUp'
 import Home from './Pages/Home'
 import Friends from './Pages/Friends'
 import ProfilePage from './Pages/ProfilePage'
+import PostDetail from './Pages/PostDetail'
 import "./index.css";
 
 //FUNÇÃO QUE DEFINE AS ROTAS/////////////////////////////
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/friends',
     element: <Friends />,
+  },
+  {
+    path: '/posts/:postId',
+    element: <PostDetail />,
   },
 ]);
 
