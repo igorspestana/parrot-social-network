@@ -8,7 +8,7 @@ router.route('/:postId/comments')
     //This function gets post's comments
     .get(async (req, res) => {
         try {
-            const comment = await Comment.find({ post: req.params.postId }).populate('post')
+            const comment = await Comment.find({ post: req.params.postId }).populate('profile')
             res.status(201).json(comment)
         } catch (err) {
             res.status(500)
@@ -33,7 +33,7 @@ router.route('/:postId/comments/:id/')
     //This function gets a comment by id
     .get(async (req, res) => {
         try {
-            const comment = await Comment.findById(req.params.id)
+            const comment = await Comment.findById(req.params.id).populate('profile')
             //post validation
             if ([comment.post].toString() === req.params.postId) {
                 res.status(201).json(comment)

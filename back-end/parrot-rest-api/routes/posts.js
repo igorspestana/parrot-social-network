@@ -8,7 +8,7 @@ router.route('/')
     //This function gets all posts
     .get(async (req, res) => {
         try {
-            const post = await Post.find().populate('profile').populate({ path: 'comments' })
+            const post = await Post.find().populate('profile').populate('comments')
             res.status(201).json(post)
         } catch (err) {
             res.status(500)
@@ -31,7 +31,7 @@ router.route('/:id')
     //This function gets a post by id
     .get(async (req, res) => {
         try {
-            const post = await Post.findById(req.params.id).populate('profile').populate({ path: 'comments' })
+            const post = await Post.findById(req.params.id).populate('profile').populate('comments')
             res.status(201).json(post)
         } catch (err) {
             res.status(500)
