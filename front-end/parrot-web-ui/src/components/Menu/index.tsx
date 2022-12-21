@@ -38,9 +38,9 @@ function Menu(props: MenuProps) {
                 <MenuItem menuTitle='Página Inicial' route="/home">
                     <HouseLine className="mr-4" size={36} weight="fill" />
                 </MenuItem>
-                <MenuItem menuTitle='Notificações' route="/notifications">
+                {/*  <MenuItem menuTitle='Notificações' route="/notifications">
                     <BellSimple className="mr-4" size={36} weight="fill" />
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem menuTitle='Perfil' route="/profile">
                     <User className="mr-4" size={36} weight="fill" />
                 </MenuItem>

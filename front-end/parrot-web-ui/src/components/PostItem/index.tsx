@@ -17,17 +17,19 @@ function PostItem({ post, handleLike }: PostItemProps) {
             <Text className="font-extrabold ml-2">{post.profile.name}</Text>
         </div>
         <div className="ml-16 flex flex-col gap-2">
-            <Link to={`/posts/${post._id}`}><Heading size="sm">{post.title}</Heading></Link>
-            {post.image ? (
-                <img
-                    src={post.description}
-                    alt="Foto"
-                    className="max-w-lg rounded-lg" />
-            ) : (
-                <Text asChild>
-                    <p>{post.description}</p>
-                </Text>
-            )}
+            <Link to={`/posts/${post._id}`}>
+                <Heading size="sm">{post.title}</Heading>
+                {post.image ? (
+                    <img
+                        src={post.description}
+                        alt="Foto"
+                        className="max-w-lg rounded-lg" />
+                ) : (
+                    <Text asChild>
+                        <p>{post.description}</p>
+                    </Text>
+                )}
+            </Link>
         </div>
         <div className="flex items-center ml-16 my-4 space-x-2">
             <Chat size={24} className="text-slate-50" />

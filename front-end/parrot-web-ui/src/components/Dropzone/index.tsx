@@ -24,7 +24,7 @@ function Dropzone({ onFileUploaded }: DropzoneProps) {
             <input {...getInputProps()} />
 
             {selectedFileUrl ? (
-                <img src={selectedFileUrl} alt="Foto" />
+                <img src={selectedFileUrl} className="max-h-96" alt="Foto" />
             ) : (
                 <p className='flex items-center gap-2'>
                     <Image size={32} weight="thin" />

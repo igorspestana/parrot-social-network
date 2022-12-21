@@ -35,10 +35,10 @@ const router = createBrowserRouter([
     path: '/posts/:postId',
     element: <PostDetail />,
   },
-  {
+  /* {
     path: '/notifications',
     element: <NotificationsPage />,
-  },
+  }, */
 ]);
 
 function App() {
