@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
+
 import api from "../../services/api"
 import { getAuthHeader } from "../../services/auth"
+import { likePost, unlikePost } from "../../services/posts"
+
 import Menu from '../../components/Menu'
 import Feed from '../../components/Feed'
+//import CustomAppBar from '../../components/CustomAppBar';
+
 import { Post } from "../../Model/Post"
-import { likePost, unlikePost } from "../../services/posts"
 
 function Home() {
     const authHeader = getAuthHeader()
@@ -55,10 +59,12 @@ function Home() {
         } catch (err) {
             console.error(err)
         }
+
     }
 
     return (
         <div className="w-screen h-screen flex">
+            {/* <CustomAppBar /> */}
             <Menu newPostCreated={newPostCreated} />
             <Feed posts={posts} handleLike={handleLike} />
         </div>

@@ -6,7 +6,8 @@ function Friends() {
         <div className="w-screen h-screen flex">
             <Menu />
             <Profiles />
-        </div>)
+        </div>
+    )
 }
 
 export default Friends

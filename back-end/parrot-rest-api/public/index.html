@@ -40,7 +40,7 @@
         socket.on("comment-like", (data) => {
             msgBox.innerHTML += ("comment-like: " + JSON.stringify(data) + "<br />")
         })
-        
+
         socket.on('connect_error', (err) => {
             alert(err)
         })
