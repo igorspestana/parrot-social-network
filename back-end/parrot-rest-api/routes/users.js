@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const Profile = require('../models/Profile')
 const authMiddleware = require('../middlewares/auth')
+const upload = require('../middlewares/upload')
 
 router.use(authMiddleware);
 router.route('/me')
@@ -17,7 +18,7 @@ router.route('/me')
         }
     })
     //This function updates my user
-    .put(async (req, res) => {
+    .put(upload.concat([(async (req, res) => {
         try {
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(req.body.password, salt)
@@ -26,11 +27,19 @@ router.route('/me')
                     user: req.body.user,
                     password: hashedPassword,
                 })
+            await Profile.findByIdAndUpdate(req.user.profile,
+                {
+                    name: req.body.name,
+                    image: req.body.image,
+                    imageUrl: req.body.imageUrl
+                })
+
             res.status(200).json('User has been updated.')
         } catch (err) {
             return res.status(500).json(err);
         }
-    })
+    })]))
+
     //This function deletes my user
     .delete(async (req, res) => {
         try {
