@@ -21,7 +21,7 @@ function PostItem({ post, handleLike }: PostItemProps) {
                 <Heading size="sm">{post.title}</Heading>
                 {post.image ? (
                     <img
-                        src={post.description}
+                        src={post.imageUrl}
                         alt="Foto"
                         className="max-w-lg rounded-lg" />
                 ) : (

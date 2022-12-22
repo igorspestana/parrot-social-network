@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom"
-import { Butterfly, UserCircle } from "phosphor-react"
+import { Link, useNavigate } from "react-router-dom"
+import { UserCircle } from "phosphor-react"
 import Button from "../Button"
 import Heading from "../Heading"
 import Text from "../Text"
@@ -22,6 +22,11 @@ function Profile() {
                 </div>
             </Heading>
             <div className="mt-4 w-full flex flex-col items-stretch">
+                <Link to={`/profileeditpage`}>
+                    <Button className="ml-4 mb-4 max-w-sm" >
+                        Editar Perfil
+                    </Button>
+                </Link>
                 <Button className="ml-4 max-w-sm" onClick={handleLogout}>Sair</Button>
             </div>
         </div >

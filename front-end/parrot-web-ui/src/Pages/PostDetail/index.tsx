@@ -31,7 +31,7 @@ function PostDetail() {
     useEffect(() => {
         async function fetchPostDetail() {
             try {
-                const response = await api.get(`/posts/${postId}`, getAuthHeader())
+                const response = await api.get(`/posts/${postId}/`, getAuthHeader())
                 const post = response.data
                 setPostDetail(post)
                 setComments(post.comments)
@@ -68,7 +68,7 @@ function PostDetail() {
             const response = await api.post(`/posts/${postId}/comments`, data, getAuthHeader())
             const comment = {
                 ...response.data,
-                profile: { _id: profile, name: user }
+                profile: { _id: profile, name: user },
             }
             setComments([comment, ...comments])
             setPostDetail((post) => {

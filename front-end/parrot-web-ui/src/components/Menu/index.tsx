@@ -4,7 +4,7 @@ import { HouseLine, User, UsersThree, BellSimple } from "phosphor-react"
 import { Link } from 'react-router-dom'
 
 import MenuItem from "../MenuItem"
-import ReceiveAlert from "../Notifications"
+/* import ReceiveAlert from "../Notifications" */
 
 import Text from '../../components/Text'
 import CreatePostButtom from '../../components/CreatePostButtom'
