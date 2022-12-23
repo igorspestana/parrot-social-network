@@ -11,6 +11,7 @@ interface PostItemProps {
 
 function PostItem({ post, handleLike }: PostItemProps) {
     const profile = localStorage.getItem("profile") as string
+
     return (<div className="border-b border-slate-400" key={post._id}>
         <div className="flex flex-row items-center ml-5 my-4">
             <UserCircle size={48} weight='light' className="text-slate-50" />

@@ -1,126 +1,168 @@
-import { ChangeEvent, FormEvent, useState, useEffect } from "react"
-import { Stack, TextField } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import Button from "../Button"
-import Dropzone from "../Dropzone"
-import Menu from "../Menu"
-import Text from "../Text"
-import { TextInput } from "../TextInput"
-import { Profile } from "../../Model/Profile"
-import api from "../../services/api"
-import { toast } from "react-toastify"
-import logo from "../../assets/logo_menu.svg"
-import { Post } from "../../Model/Post"
-import Heading from "../Heading"
-import { UserCircle } from "phosphor-react"
+import { Link } from 'react-router-dom';
+import Heading from '../../components/Heading'
+import Text from '../../components/Text';
+import { TextInput } from '../../components/TextInput';
+import { User, UserCircle } from 'phosphor-react';
+import { Lock } from 'phosphor-react';
+import Button from '../../components/Button';
+import { FormEvent, useState } from 'react';
+import api from '../../services/api';
 
-function ProfileEdit() {
+//Interface para encher os parâmetros
+interface AuthFormProps {
+  formTitle: string;
+  submitFormButtonText: string;
+  submitFormButtonAction: (auth: Auth) => void;
+  linkDescription: string;
+  routeName: string;
+  showNameInput?: boolean;
+}
 
-  const profileClean = {
-    _id: "",
-    name: "",
-    image: true,
-    imageUrl: "",
-    user: "",
-    following: [""],
-    followers: [""],
-  }
+interface AuthFormElements extends HTMLFormControlsCollection {
+  user: HTMLInputElement;
+  password: HTMLInputElement;
+  name?: HTMLInputElement;
+  //email?: HTMLInputElement;
+  imageUrl?: HTMLInputElement;
+}
+
+interface AuthFormElement extends HTMLFormElement {
+  readonly elements: AuthFormElements
+}
+
+export interface Auth {
+  user: string;
+  name?: string;
+  //email?: string;
+  password: string;
+  image?: boolean;
+  imageUrl?: string;
+}
+
+function ProfileEdit({
+  formTitle,
+  submitFormButtonText,
+  submitFormButtonAction,
+  linkDescription,
+  routeName,
+  showNameInput,
+}: AuthFormProps) {
 
   const [selectedFile, setSelectedFile] = useState<File>()
-  const navigate = useNavigate()
   const token = localStorage.getItem("accessToken")
-  const profileId = localStorage.getItem("profile")
   const user = localStorage.getItem("user")
 
-  const [profile, setProfile] = useState<Profile>(profileClean)
-  const [formData, setFormData] = useState({
-    name: "",
-  })
+  async function handleSubmit(event: FormEvent<AuthFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
 
-  useEffect(() => {
-    const getProfile = async () => {
+    if (selectedFile) {
+      const data = new FormData()
+      data.append("user", form.elements.user.value)
+      data.append("password", form.elements.password.value)
+      data.append("name", form.elements.name.value)
+      data.append("imageUrl", form.elements.imageUrl.value)
+      data.append("file", selectedFile)
+      /*         if(selectedFile){
+                  data.append("file", selectedFile)
+               } */
+
       try {
-        const responseProfile = await api.get(`/profiles/${profileId}`, {
-          headers: { authorization: `Bearer ${token}` }
-        });
-        setProfile(responseProfile.data)
-        setFormData({
-          name: responseProfile.data.name,
+        const response = await api.put("/user/me", data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-      } catch (error) {
-        toast.warning('Erro ao obter o perfil!', {
-          icon: () => <img src={logo} alt="logo" />,
-        })
-      }
-    }
-    getProfile()
-  }, [token, profileId])
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setFormData({ ...formData, [name]: value })
+      } catch (err) {
+        console.log(err)
+        alert("Erro ao criar post")
+      }
+
+    }
+
+    const auth = {
+      user: form.elements.user.value,
+      password: form.elements.password.value,
+      name: form.elements.name?.value,
+      //email: form.elements.email?.value,
+      imageUrl: form.elements.imageUrl?.value
+
+    }
+
+    submitFormButtonAction(auth)
   }
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
-    const { name } = formData;
-    const data = new FormData();
-
-    data.append("name", name as string);
-    if (selectedFile) {
-      data.append("file", selectedFile);
-    }
-    try {
-      console.log(data);
-      const response = await api.put("/users/me", data, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      console.log(response);
-      navigate("/home");
-    } catch (err) {
-      toast.warning("Ocorreu um erro ao editar o perfil!", {
-        icon: () => <img src={logo} alt="logo SocialMap" />,
-      });
-    }
-  };
-
-
   return (
-    <div className="basis-5/6">
+    <div className='basis-5/6 '>
       <Heading className="border-b border-slate-400 mt-4">
+        <Text size='lg' className="font-extrabold ml-5">Editar Perfil</Text>
         <div className="flex flex-row items-center ml-5 my-4">
           <UserCircle size={48} weight='light' className="text-slate-50" />
           <Text className="font-extrabold ml-2">{user}</Text>
         </div>
       </Heading>
 
-      <div className="ml-4 mt-4">
-        <Text>Foto de Perfil</Text>
-        <TextInput.Root>
-          <Dropzone onFileUploaded={setSelectedFile} />
-        </TextInput.Root>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-col gap-4 items-stretch w-full max-w-sm mt-10 ml-4'>
+        {showNameInput && (
+          <label htmlFor="name" className='flex flex-col gap-2'>
+            <Text>Nome</Text>
+            <TextInput.Root>
+              <TextInput.Icon>
+                <User />
+              </TextInput.Icon>
+              <TextInput.Input
+                id='name'
+                type='text'
+                placeholder='Digite o nome do usuário'
+              />
+            </TextInput.Root>
+          </label>
+        )}
 
-
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={6}>
-            <h3 className="titleEdit text-cyan-50">Nome</h3>
-            <TextField
-              variant="standard"
-              name="name"
-              value={formData.name}
-              placeholder={profile.name}
-              onChange={handleInputChange}
-              style={{ marginTop: "5px" }}
+        <label htmlFor="user" className='flex flex-col gap-2'>
+          <Text>Endereço de e-mail</Text>
+          <TextInput.Root>
+            <TextInput.Icon>
+              <User />
+            </TextInput.Icon>
+            <TextInput.Input
+              id='user'
+              type='text'
+              placeholder='Digite seu login'
             />
-            <div className="flex flex-1 gap-2">
-              <Button onClick={() => window.location.reload()}>Cancelar</Button>
-              <Button type="submit">Salvar</Button>
-            </div>
-          </Stack>
-        </form>
-      </div>
-    </div>
+          </TextInput.Root>
+        </label>
+        <label htmlFor="password" className='flex flex-col gap-2'>
+          <Text>Sua senha</Text>
+          <TextInput.Root>
+            <TextInput.Icon>
+              <Lock />
+            </TextInput.Icon>
+            <TextInput.Input
+              id='password'
+              type='password'
+              placeholder='*******'
+            />
+          </TextInput.Root>
+        </label>
+
+        <Button type='submit' className='mt-4'>{submitFormButtonText}</Button>
+      </form>
+
+
+      <footer className='flex-col items-center gap-4 mt-8'>
+        < Text asChild size='sm'>
+          < Link to={routeName} className='text-gray-400 underline hover:text-gray-200'
+          >
+            {linkDescription}
+          </ Link>
+        </Text>
+      </footer>
+    </div >
   );
 }
+
 export default ProfileEdit;
