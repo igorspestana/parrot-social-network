@@ -1,12 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
-import { UserCircle } from "phosphor-react"
 import Button from "../Button"
-import Heading from "../Heading"
-import Text from "../Text"
-
 function Profile() {
     const navigate = useNavigate()
-    const user = localStorage.getItem("user")
 
     function handleLogout() {
         localStorage.clear()
@@ -15,13 +10,6 @@ function Profile() {
 
     return (
         <div className="basis-5/6">
-            <Heading className="border-b border-slate-400 mt-4">
-                <Text size='lg' className="font-extrabold ml-5">Perfil</Text>
-                <div className="flex flex-row items-center ml-5 my-4">
-                    <UserCircle size={48} weight='light' className="text-slate-50" />
-                    <Text className="font-extrabold ml-2">{user}</Text>
-                </div>
-            </Heading>
             <div className="mt-4 w-full flex flex-col items-stretch">
                 <Link to={`/profileeditpage`}>
                     <Button className="ml-4 mb-4 max-w-sm" >

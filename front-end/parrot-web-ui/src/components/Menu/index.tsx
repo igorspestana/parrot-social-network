@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { HouseLine, User, UsersThree, BellSimple } from "phosphor-react"
+import { HouseLine, User, UsersThree } from "phosphor-react"
 import { Link } from 'react-router-dom'
 
 import MenuItem from "../MenuItem"

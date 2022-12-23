@@ -22,6 +22,7 @@ interface CommentFormElement extends HTMLFormElement {
 function PostDetail() {
     const { postId } = useParams()
     const [postDetail, setPostDetail] = useState<Post>()
+
     const [comments, setComments] = useState([])
     const profile = localStorage.getItem("profile") as string
     const user = localStorage.getItem("user") as string
@@ -31,7 +32,7 @@ function PostDetail() {
     useEffect(() => {
         async function fetchPostDetail() {
             try {
-                const response = await api.get(`/posts/${postId}/`, getAuthHeader())
+                const response = await api.get(`/posts/${postId}`, getAuthHeader())
                 const post = response.data
                 setPostDetail(post)
                 setComments(post.comments)
@@ -61,7 +62,7 @@ function PostDetail() {
         const form = event.currentTarget;
 
         const data = {
-            description: form.elements.description.value
+            description: form.elements.description.value,
         }
 
         try {
@@ -70,6 +71,7 @@ function PostDetail() {
                 ...response.data,
                 profile: { _id: profile, name: user },
             }
+
             setComments([comment, ...comments])
             setPostDetail((post) => {
                 post?.comments.push(comment)

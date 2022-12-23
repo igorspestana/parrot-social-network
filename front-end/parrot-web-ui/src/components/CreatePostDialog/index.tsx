@@ -26,6 +26,7 @@ function CreatePostDialog({ postCreated }: CreatePostDialogProps) {
 
     async function handleSubmit(event: FormEvent<PostFormElement>) {
         event.preventDefault()
+
         const form = event.currentTarget
         const newPost = {
             title: form.elements.title.value,

@@ -6,9 +6,10 @@ import { likePost, unlikePost } from "../../services/posts"
 
 import Menu from '../../components/Menu'
 import Feed from '../../components/Feed'
-//import CustomAppBar from '../../components/CustomAppBar';
 
 import { Post } from "../../Model/Post"
+import Avatar from "../../components/Avatar"
+import Text from '../../components/Text';
 
 function Home() {
     const authHeader = getAuthHeader()
@@ -59,14 +60,16 @@ function Home() {
         } catch (err) {
             console.error(err)
         }
-
     }
 
     return (
         <div className="w-screen h-screen flex">
-            {/* <CustomAppBar /> */}
             <Menu newPostCreated={newPostCreated} />
-            <Feed posts={posts} handleLike={handleLike} />
+            <div className="flex-rol mt-4 w-full overflow-y-auto scroll-smooth">
+                <Text size='lg' className="font-extrabold ml-5">Feed</Text>
+                <Avatar />
+                <Feed posts={posts} handleLike={handleLike} />
+            </div>
         </div>
     )
 }

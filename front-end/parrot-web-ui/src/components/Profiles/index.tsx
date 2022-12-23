@@ -3,7 +3,6 @@ import { UserCircle } from "phosphor-react"
 import api from "../../services/api"
 import { getAuthHeader } from "../../services/auth"
 import Button from "../Button"
-import Heading from "../Heading"
 import Text from "../Text"
 import Profile from "../Profile"
 
@@ -16,7 +15,6 @@ interface Profile {
 
 function Profiles() {
     const authHeader = getAuthHeader()
-    const user = localStorage.getItem("user")
     const [profiles, setProfiles] = useState<Profile[]>([])
 
     useEffect(() => {
@@ -62,13 +60,6 @@ function Profiles() {
 
     return (
         <div className="basis-5/6">
-            <Heading className="border-b border-slate-400 mt-4">
-                <Text size='lg' className="font-extrabold ml-5">Amigos</Text>
-                <div className="flex flex-row items-center ml-5 my-4">
-                    <UserCircle size={48} weight='light' className="text-slate-50" />
-                    <Text className="font-extrabold ml-2">{user}</Text>
-                </div>
-            </Heading>
             <ul>
                 {profiles.map((profile) => (
                     <li key={profile._id} className="border-b border-slate-400 mt-4 pl-5">
@@ -86,7 +77,7 @@ function Profiles() {
                                 Seguir
                             </Button>
                             <button
-                                className='bg-zinc-500 px-5 h-12 rounded-md font-semibold hover:bg-zinc-600 focus:ring-2 ring-white'
+                                className='bg-zinc-500 px-5 h-12 rounded-full font-semibold hover:bg-zinc-600 focus:ring-2 ring-white'
                                 onClick={() => handleUnfollow(profile._id)}
                                 disabled={!profile.followButtonDisabled}
                             >
