@@ -14,6 +14,16 @@ router.route('/')
         }
     })
 
+    .put(async (req, res) => {
+        try {
+            const profile = await Profile.findById(req.user.profile)
+            await profile.updateOne({ $set: req.body })
+            res.status(200).json('Profile has been updated.')
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    })
+
 router.route('/search')
     //This function searchs a profile by name
     .get(async (req, res) => {
