@@ -1,12 +1,15 @@
 import { useState, useEffect, FormEvent } from "react"
 import { useParams } from "react-router-dom"
-import Button from "../../components/Button"
 import { UserCircle } from "phosphor-react"
+
+import Button from "../../components/Button"
 import Menu from "../../components/Menu"
 import PostItem from "../../components/PostItem"
 import Text from '../../components/Text'
 import { TextInput } from "../../components/TextInput"
+
 import { Post } from "../../Model/Post"
+
 import api from "../../services/api"
 import { getAuthHeader } from "../../services/auth"
 import { likePost, unlikePost } from "../../services/posts"
@@ -26,8 +29,6 @@ function PostDetail() {
     const profile = localStorage.getItem("profile") as string
     const user = localStorage.getItem("user") as string
 
-    console.log(comments)
-
     useEffect(() => {
         async function fetchPostDetail() {
             try {
@@ -35,6 +36,7 @@ function PostDetail() {
                 const responseComments = await api.get(`/posts/${postId}/comments`, getAuthHeader());
                 setPostDetail(responsePost.data)
                 setComments(responseComments.data)
+
             } catch (err) {
                 console.error(err)
             }
@@ -66,6 +68,7 @@ function PostDetail() {
 
         try {
             const response = await api.post(`/posts/${postId}/comments`, data, getAuthHeader())
+            console.log(response.data)
             const comment = {
                 ...response.data,
                 profile: { _id: profile, name: user },

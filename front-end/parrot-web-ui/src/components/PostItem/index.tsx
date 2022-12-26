@@ -1,7 +1,9 @@
 import { UserCircle, Chat, Heart } from "phosphor-react"
 import { Link } from "react-router-dom"
+
 import Heading from "../Heading"
 import Text from "../Text"
+
 import { Post } from '../../Model/Post'
 
 interface PostItemProps {
