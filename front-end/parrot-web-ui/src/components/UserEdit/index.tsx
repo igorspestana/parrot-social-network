@@ -50,7 +50,7 @@ function UserEdit() {
         const response = await api.get(`/users/me`, {
           headers: { authorization: `Bearer ${token}` }
         });
-        console.log(response)
+
         setUser(response.data)
         setFormData({
           user: response.data.user,
@@ -84,7 +84,7 @@ function UserEdit() {
           Authorization: `Bearer ${token}`
         },
       })
-      console.log(response);
+      alert("Usuário atualizado");
     } catch (err) {
       console.error(err)
       alert('Erro ao atualizar o usuário')

@@ -32,7 +32,6 @@ function Avatar() {
                 const requestUser = await api.get(`/users/me`, {
                     headers: { authorization: `Bearer ${token}` }
                 });
-                console.log(requestUser)
                 setUser(requestUser.data)
                 setFormData({
                     user: requestUser.data.user,

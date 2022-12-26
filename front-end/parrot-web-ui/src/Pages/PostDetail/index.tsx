@@ -68,7 +68,6 @@ function PostDetail() {
 
         try {
             const response = await api.post(`/posts/${postId}/comments`, data, getAuthHeader())
-            console.log(response.data)
             const comment = {
                 ...response.data,
                 profile: { _id: profile, name: user },
