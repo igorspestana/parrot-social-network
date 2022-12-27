@@ -13,7 +13,6 @@ function Login() {
     async function handleLogin(auth: Auth) {
         try {
             const { data } = await api.post('/security/login', auth)
-            //para preencher no local storage
             const decodedToken = jwt_decode(data.accessToken) as UserToken
             localStorage.setItem("profile", decodedToken.profile)
             localStorage.setItem("user", decodedToken.user)
