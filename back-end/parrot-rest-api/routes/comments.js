@@ -9,7 +9,7 @@ router.route('/:postId/comments')
     .get(async (req, res) => {
         try {
             const comment = await Comment.find({ post: req.params.postId }).populate('profile')
-            res.status(201).json(comment)
+            res.status(201).json((comment).sort(function (a, b) { return new Date(b.createAt) - new Date(a.createAt) }))
         } catch (err) {
             res.status(500)
         }

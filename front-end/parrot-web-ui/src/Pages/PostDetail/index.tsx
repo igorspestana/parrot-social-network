@@ -77,6 +77,7 @@ function PostDetail() {
                 post?.comments.push(comment)
                 return { ...post }
             })
+            window.location.reload()
         } catch (err) {
             console.error(err)
         }
