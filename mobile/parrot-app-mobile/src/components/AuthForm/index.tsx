@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Image, Platform, Text } from 'react-native';
+import { KeyboardAvoidingView, Image, Platform } from 'react-native';
 import { User, Lock } from 'phosphor-react-native';
 
 import { Heading } from '../../components/Heading';
@@ -12,8 +12,6 @@ import logo from '../../../assets/images/logo.png'
 import { styles } from './styles'
 import { THEME } from '../../theme';
 
-import api from '../../services/api'
-
 export interface Auth {
     user: string;
     name?: string;
@@ -24,16 +22,13 @@ interface AuthFormProps {
     formTitle: string;
     submitFormButtonText: string;
     submitFormButtonAction: (auth: Auth) => void;
-    linkDescription: string;
-    routeName: string;
     showNameInput?: boolean;
 }
 
 export function AuthForm({
     formTitle,
     submitFormButtonText,
-    submitFormButtonAction,
-    linkDescription
+    submitFormButtonAction
 }: AuthFormProps) {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
@@ -75,7 +70,6 @@ export function AuthForm({
             <Spacer />
             <Button onPress={() => submitFormButtonAction({ user, password })} title={submitFormButtonText} />
             <Spacer />
-            <Text style={styles.link}>{linkDescription}</Text>
         </KeyboardAvoidingView >
     )
 }
