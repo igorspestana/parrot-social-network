@@ -3,8 +3,7 @@ import Heading from '../../components/Heading'
 import Text from '../../components/Text';
 import logo from '../../assets/logo.svg';
 import { TextInput } from '../../components/TextInput';
-import { User } from 'phosphor-react';
-import { Lock } from 'phosphor-react';
+import { User, Lock, At } from 'phosphor-react';
 import Button from '../../components/Button';
 import { FormEvent } from 'react';
 
@@ -78,7 +77,7 @@ function AuthForm({
                                 <TextInput.Input
                                     id='name'
                                     type='text'
-                                    placeholder='Digite o nome do usuário'
+                                    placeholder='Digite seu nome'
                                 />
                             </TextInput.Root>
                         </label>
@@ -88,12 +87,12 @@ function AuthForm({
                         <Text>Endereço de e-mail</Text>
                         <TextInput.Root>
                             <TextInput.Icon>
-                                <User />
+                                <At />
                             </TextInput.Icon>
                             <TextInput.Input
                                 id='user'
                                 type='text'
-                                placeholder='Digite seu login'
+                                placeholder='Digite seu e-mail'
                             />
                         </TextInput.Root>
                     </label>
