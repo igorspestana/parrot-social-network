@@ -31,6 +31,7 @@ export function SignUp({ navigation }: SignUpProps) {
                 formTitle='Faça o cadastro e comece a usar!'
                 submitFormButtonText='Cadastrar'
                 submitFormButtonAction={handleSignUp}
+                showNameInput
             />
             <TouchableOpacity onPress={handleLoginClick}>
                 <Text style={styles.link}>Já possui conta? Entre agora!</Text>

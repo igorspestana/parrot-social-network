@@ -6,12 +6,14 @@ import { Context as AuthContext } from '../../context/AuthContext';
 
 import { AuthForm } from '../../components/AuthForm';
 import { styles } from './styles'
+import { Spacer } from '../../components/Spacer';
 interface LoginProps {
     navigation: NativeStackNavigationProp<any, any>
 }
 
 export function Login({ navigation }: LoginProps) {
-    const { login } = useContext(AuthContext)
+    const { login, errorMessage } = useContext(AuthContext)
+
     function handleRegisterClick() {
         navigation.navigate('SignUp')
     }
@@ -26,6 +28,11 @@ export function Login({ navigation }: LoginProps) {
             <TouchableOpacity onPress={handleRegisterClick}>
                 <Text style={styles.link}>Não possui conta? Cria uma agora!</Text>
             </TouchableOpacity>
+            {errorMessage && (
+                <Spacer>
+                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                </Spacer>
+            )}
         </>
 
     )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Image, Platform } from 'react-native';
-import { User, Lock } from 'phosphor-react-native';
+import { At, User, Lock } from 'phosphor-react-native';
 
 import { Heading } from '../../components/Heading';
 import { Input } from '../../components/Input';
@@ -11,12 +11,7 @@ import logo from '../../../assets/images/logo.png'
 
 import { styles } from './styles'
 import { THEME } from '../../theme';
-
-export interface Auth {
-    user: string;
-    name?: string;
-    password: string;
-}
+import { Auth } from '../../@types/auth'
 
 interface AuthFormProps {
     formTitle: string;
@@ -28,10 +23,13 @@ interface AuthFormProps {
 export function AuthForm({
     formTitle,
     submitFormButtonText,
-    submitFormButtonAction
+    submitFormButtonAction,
+    showNameInput
 }: AuthFormProps) {
     const [user, setUser] = useState('')
+    const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+
 
     return (
         <KeyboardAvoidingView
@@ -41,14 +39,30 @@ export function AuthForm({
         >
             <Image source={logo} style={logo} resizeMethod="scale" />
             <Heading title='Sysmap Parrot' subtitle={formTitle} />
+
+            {showNameInput && (
+                <Input.Root>
+                    <Input.Icon>
+                        <User color={THEME.COLORS.INPUT} />
+                    </Input.Icon>
+                    <Input.Input
+                        value={name}
+                        onChangeText={setName}
+                        placeholder='Digite seu nome'
+                        placeholderTextColor={THEME.COLORS.INPUT}
+                        autoCapitalize="none"
+                        autoCorrect />
+                </ Input.Root>
+            )}
+            <Spacer />
             <Input.Root>
                 <Input.Icon>
-                    <User color={THEME.COLORS.INPUT} />
+                    <At color={THEME.COLORS.INPUT} />
                 </Input.Icon>
                 <Input.Input
                     value={user}
                     onChangeText={setUser}
-                    placeholder='Digite seu usuário'
+                    placeholder='Digite seu e-mail'
                     placeholderTextColor={THEME.COLORS.INPUT}
                     autoCapitalize="none"
                     autoCorrect />
@@ -68,7 +82,10 @@ export function AuthForm({
                     secureTextEntry />
             </ Input.Root>
             <Spacer />
-            <Button onPress={() => submitFormButtonAction({ user, password })} title={submitFormButtonText} />
+            <Button
+                onPress={() => submitFormButtonAction({ user, name, password })}
+                title={submitFormButtonText}
+            />
             <Spacer />
         </KeyboardAvoidingView >
     )
