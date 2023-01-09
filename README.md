@@ -61,35 +61,49 @@ A social network project developed at the SysMap Excellence Full Stack Trainee P
   </tr>
 </table>
 
-## How to run the application:
+## How to run the application
 
-1) clone the project: 
+clone the project: 
 ```
-git clone https://github.com/bc-fullstack-02/igor-pestana.git
+git clone https://github.com/igorspestana/parrot-social-network.git
 ```
-2) go to *rest-api* directory in *back-end* directory
-3) install back-end dependencies:
+### Back-end:
+1) go to *parrot-rest-api* directory in *back-end* directory
+2) install back-end dependencies:
 ```
 npm install
 ```
-4) start the server and the services:
+3) start the server and the services:
 ```
 docker-compose up -d
 ```
 *in case of server error, repeat `docker-compose up -d` after the services are successfully running
 
-5) go to *parrot* directory in *front-end* directory
-6) install front-end dependencies:
+4) access browser url: 
+- Api Swagger Documentation: http://localhost:4000/api-docs/
+### Front-end:
+1) go to *parrot-web-ui* directory in *front-end* directory
+2) install front-end dependencies:
 ```
 npm install
 ```
-7) start the front-end
+3) start the front-end
 ```
 npm run dev
 ```
-8) access browser url: 
+4) access browser url: 
 - Web Application: http://localhost:5173
-- Api Swagger Documentation: http://localhost:4000/api-docs/
+### Mobile:
+
+1) go to *parrot-app-mobile* directory in *mobile* directory
+2) install mobile dependencies:
+```
+npm install
+```
+3) start the mobile
+```
+npx expo start
+```
 
 ## Author
 
