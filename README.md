@@ -3,6 +3,8 @@ A social network project developed at the SysMap Excellence Full Stack Trainee P
 
 > Status: Developing ⚠️ 
 
+<img  style="border-radius: 5px" src="./midias/parrot-web.gif" alt="intro-web">
+
 ## Modules:
 
 + [Back-end API](https://github.com/bc-fullstack-02/igor-pestana/tree/main/back-end/rest-api)
