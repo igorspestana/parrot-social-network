@@ -4,6 +4,7 @@ A social network project developed at the SysMap Excellence Full Stack Trainee P
 > Status: Developing ⚠️ 
 
 <img  style="border-radius: 5px" src="./midias/parrot-web.gif" alt="intro-web">
+<img  style="border-radius: 5px" src="./midias/parrot-mobile.png" alt="intro-mobile">
 
 ## Modules:
 
