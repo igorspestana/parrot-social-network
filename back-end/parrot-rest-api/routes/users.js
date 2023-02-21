@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt')
+const bcryptjs = require('bcryptjs')
 const User = require('../models/User')
 const Profile = require('../models/Profile')
 const authMiddleware = require('../middlewares/auth')
@@ -20,8 +20,8 @@ router.route('/me')
     //This function updates my user
     .put(upload.concat([(async (req, res) => {
         try {
-            const salt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(req.body.password, salt)
+            const salt = await bcryptjs.genSalt(10)
+            const hashedPassword = await bcryptjs.hash(req.body.password, salt)
             await User.findByIdAndUpdate(req.user.id,
                 {
                     user: req.body.user,

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt')
+const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const Profile = require('../models/Profile')
@@ -12,7 +12,7 @@ router.route('/login')
             const user = await User.findOne({ user: req.body.user })
             !user && res.status(404).json('Incorrect username or password')
             //password validation
-            const validPassword = await bcrypt.compare(req.body.password, user.password);
+            const validPassword = await bcryptjs.compare(req.body.password, user.password);
             !validPassword && res.status(400).json('Incorrect username or password')
             const { password, ...userJWT } = user._doc
             //token
@@ -28,8 +28,8 @@ router.route('/register')
     .post(async (req, res) => {
         try {
             //password encrypted generate
-            const salt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(req.body.password, salt)
+            const salt = await bcryptjs.genSalt(10)
+            const hashedPassword = await bcryptjs.hash(req.body.password, salt)
             const newUser = new User({
                 user: req.body.user,
                 password: hashedPassword,
